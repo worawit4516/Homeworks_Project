@@ -1,0 +1,306 @@
+{% extends "base.html" %} {% block content %}
+
+<title>Teacher page</title>
+
+<section class="vh-100">
+  <div class="container-fluid py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100 mb-4">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+            <h4 class="text-center my-3 pb-3 font-weight-bold text-justify">
+              Assignment Table
+            </h4>
+
+            <div class="d-flex justify-content-center align-items-center mb-4">
+              <div class="row">
+                <div class="col">
+                  <!-- Button trigger modal -->
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#NewHomeWork"
+                  >
+                    New Homework Here !!
+                  </button>
+
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="NewHomeWork"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="NewHomeWorkTitle"
+                    aria-hidden="true"
+                  >
+                    <div
+                      class="modal-dialog modal-dialog-centered"
+                      role="document"
+                    >
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="NewHomeWorkTitle">
+                            New Homework
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form
+                            class="container-fluid"
+                            action="add_homework"
+                            method="post"
+                          >
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <label>Description</label>
+                              <input
+                                class="form-control"
+                                placeholder="Enter description"
+                                name="description"
+                              />
+                            </div>
+                            <div class="form-group">
+                              <label>Score</label>
+                              <input
+                                class="form-control"
+                                placeholder="Enter score"
+                                name="score"
+                              />
+                            </div>
+                            <div class="form-group">
+                              <label>Subject</label>
+                              <select
+                                name="subject_id"
+                                placeholder="Enter subject"
+                                class="form-control"
+                              >
+                                <option value="">
+                                  Please choose an subject
+                                </option>
+                                {% for x in Subjects %}
+                                <option value={{ x.subject_id }}>
+                                  {{ x.name }}
+                                </option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label>Room</label>
+                              <select
+                                name="room_id"
+                                placeholder="Enter Room"
+                                class="form-control"
+                              >
+                                <option value="">Please choose an Room</option>
+                                {% for x in Rooms %}
+                                <option value={{ x.room_id }}>
+                                  {{ x.room_id }}
+                                </option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label>Teacher</label>
+                              <select
+                                name="teacher_id"
+                                placeholder="Enter teacher"
+                                class="form-control"
+                              >
+                                <option value="">
+                                  Please choose an teacher
+                                </option>
+                                {% for x in Teachers %}
+                                <option value={{ x.teacher_id }}>
+                                  {{ x.fname }}
+                                </option>
+                                {% endfor %}
+                              </select>
+                            </div>
+
+                            <div class="form-group">
+                              <label>Deadline</label>
+                              <input
+                                class="form-control"
+                                placeholder="Enter deadline"
+                                name="dead_line"
+                              />
+                            </div>
+                            <div class="d-flex justify-content-between">
+                              <div class="justify-content-start">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-dismiss="modal"
+                                >
+                                  Close
+                                </button>
+                              </div>
+                              <div class="justify-content-end">
+                                <button
+                                  type="submit"
+                                  class="btn btn-primary align-self-end"
+                                  onclick="Alert_save()"
+                                >
+                                  Submit
+                                </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <th scope="col">Homework</th>
+                  <th scope="col">Subject</th>
+                  <th scope="col">Score</th>
+                  <th scope="col">Room</th>
+                  <th scope="col">Teacher</th>
+                  <th scope="col">Deadline</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for x in Homeworks %}
+                <tr class="mt-2 text-center">
+                  <th scope="row">{{ x.id }}</th>
+                  <td>{{ x.homework_description }}</td>
+                  <td>{{ x.subject.name }}</td>
+                  <td>{{ x.score }}</td>
+                  <td>{{ x.room.room_id }}</td>
+                  <td>{{ x.teacher.fname }}</td>
+                  <td>{{ x.deadline }}</td>
+                  <td>
+                    <div class="d-flex justify-content-between">
+                      <div class="justify-content-start">
+                        <button
+                          type="submit"
+                          class="btn btn-warning ms-1"
+                          data-toggle="modal"
+                          data-target="#EditHomework"
+                        >
+                          Edit
+                        </button>
+
+                        <!-- Modal -->
+                        <div
+                          class="modal fade"
+                          id="EditHomework"
+                          role="dialog"
+                          aria-labelledby="EditHomeworkTitle"
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="modal-dialog modal-dialog-centered"
+                            role="document"
+                          >
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="EditHomeworkTitle">
+                                  Edit Homework : {{ x.id }}
+                                </h5>
+                                <button
+                                  type="button"
+                                  class="close"
+                                  data-dismiss="modal"
+                                  aria-label="Close"
+                                >
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form
+                                  class="container-fluid text-left"
+                                  action="edit/{{ x.id }}"
+                                  method="post"
+                                >
+                                  {% csrf_token %}
+                                  <div class="form-group">
+                                    <label>Description</label>
+                                    <input
+                                      class="form-control"
+                                      placeholder="Enter description"
+                                      name="description"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Score</label>
+                                    <input
+                                      class="form-control"
+                                      placeholder="Enter score"
+                                      name="score"
+                                    />
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Deadline</label>
+                                    <input
+                                      class="form-control"
+                                      placeholder="Enter deadline"
+                                      name="dead_line"
+                                    />
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <div class="justify-content-start">
+                                      <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-dismiss="modal"
+                                      >
+                                        Close
+                                      </button>
+                                    </div>
+                                    <div class="justify-content-end">
+                                      <button
+                                        type="submit"
+                                        class="btn btn-primary align-self-end"
+                                      >
+                                        Save changes
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <td>
+                        <div class="d-flex justify-content-between">
+                          <div class="justify-content-end ml-2">
+                            <a href="delete/{{ x.id }}">
+                              <button class="btn btn-danger">
+                              Delete
+                            </button>
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

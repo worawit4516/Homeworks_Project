@@ -1,0 +1,104 @@
+{% extends "base.html" %} {% block content %}
+
+<title>student page</title>
+
+<section class="vh-100">
+  <div class="container-fluid py-5 h-100">
+    <div
+      class="row d-flex justify-content-center align-items-center h-100 mb-4"
+    >
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+            <h4 class="text-center my-3  font-weight-bold text-justify">
+              Assignment Table
+            </h4>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="row"></div>
+          </div>
+          <table class="table mb-4">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Homework</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Score</th>
+                <th scope="col">Room</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Deadline</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for x in stu_homeworks %}
+              <tr class="mt-2 text-center">
+                <th scope="row">{{ x.homework.id }}</th>
+                <td>{{ x.homework.homework_description }}</td>
+                <td>{{ x.homework.subject.name }}</td>
+                <td>{{ x.homework.score }}</td>
+                <td>{{ x.homework.room.room_id }}</td>
+                <td>{{ x.homework.teacher.fname }}</td>
+                <td>{{ x.homework.deadline }}</td>
+                <td>
+                  <div class="d-flex justify-content-between">
+                    <div class="justify-content-start">
+                      <button type="submit" class="btn btn-warning ms-1">
+                        Inprogress
+                      </button>
+                    </div>
+                    <div class="justify-content-end ml-2">
+                      <a href="submit/{{ x.stu_hw_id }}">
+                        <button class="btn btn-success">
+                        Submit
+                      </button>
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" role="dialog" id="notification">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reminder homework !!</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="d-flex justify-content-center"> Please check your homework here</p>
+          <table class="table">
+          {% for x in stu_homeworks %}
+          <tr class=" text-center">
+            <th scope="row">{{ x.homework.id }}</th>
+            <td>{{ x.homework.homework_description }}</td>
+            <td>{{ x.homework.subject.name }}</td>
+            <td>{{ x.homework.deadline }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            Understand
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
