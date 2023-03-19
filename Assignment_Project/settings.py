@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
+
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,10 +82,10 @@ DATABASES = {
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
         'NAME': 'assignment_project',   # ชื่อ database ของเรา
-        'USER': 'root',  # ชื่อผู้ใช้ ที่เราจะใช้ในการเข้าไปใช้งาน 
-        'PASSWORD': 'Namotasa13',  # รหัสผ่านของเรา 
-        'HOST': '127.0.0.1',  # URL ของ database ที่เราสร้างไว้ 
-        'PORT': '3306',  # พอร์ตหรือช่องทาง ของ database ที่เราสร้างไว้ 
+        'USER': os.environ.get('DB_USER', 'root'),  # ชื่อผู้ใช้ ที่เราจะใช้ในการเข้าไปใช้งาน 
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'Namotasa13'),  # รหัสผ่านของเรา 
+        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),  # URL ของ database ที่เราสร้างไว้ 
+        'PORT': os.environ.get('DB_PORT', '3306'),  # พอร์ตหรือช่องทาง ของ database ที่เราสร้างไว้ 
     }  
 }
 
