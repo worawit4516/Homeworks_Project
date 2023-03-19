@@ -30,10 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['namo-homework.azurewebsites.net']
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://namo-homework.azurewebsites.net'
-],
-
 # Application definition
 
 INSTALLED_APPS = [
