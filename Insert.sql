@@ -3,6 +3,9 @@ CREATE DATABASE assignment_project;
 # User SQL Query
 
 INSERT INTO `homeworks_teacher`(teacher_id, fname, lname, birthday, email, phone, password) VALUES(1,'Admin', 'Admin', '1995-02-22', 'Admin', '0904751326', 'Admin');
+INSERT INTO `homeworks_teacher`(teacher_id, fname, lname, birthday, email, phone, password) VALUES(2,'Admin2', 'Admin2', '1995-02-22', 'Admin2', '0904751326', 'Admin2');
+INSERT INTO `homeworks_teacher`(teacher_id, fname, lname, birthday, email, phone, password) VALUES(3,'Admin3', 'Admin3', '1995-02-22', 'Admin3', '0904751326', 'Admin3');
+INSERT INTO `homeworks_teacher`(teacher_id, fname, lname, birthday, email, phone, password) VALUES(4,'Admin4', 'Admin4', '1995-02-22', 'Admin4', '0904751326', 'Admin4');
 
 INSERT INTO `homeworks_subject`(subject_id,name, description, credit, teacher_id) VALUES(1,'คณิตศาสตร์ ', '', 3, 1);
 INSERT INTO `homeworks_subject`(subject_id,name, description, credit, teacher_id) VALUES(2,'วิทยาศาสตร์ ', '', 3, 2);
