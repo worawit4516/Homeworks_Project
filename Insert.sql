@@ -24,5 +24,5 @@ INSERT INTO `Homeworks_grade`(grade_id,name, num) VALUES(6,'ประถมศ�
 INSERT INTO `Homeworks_room`(room_id,num, grade_id, subject_id) VALUES(1,1, 4, 1);
 INSERT INTO `Homeworks_room`(room_id,num, grade_id, subject_id) VALUES(2,1, 4, 2);
 
-INSERT INTO `Homeworks_student`(student_id,fname, lname, birthday, email, phone, room_id) VALUES(1,'Bob', 'Migon', '2013-07-30', 'bob.migo@gmail.com', '0826547891', 1);
-INSERT INTO `Homeworks_student`(student_id,fname, lname, birthday, email, phone, room_id) VALUES(2,'Mae', 'Pooka', '2013-09-17', 'mae.pook@gmail.com', '0824561372', 1);
+INSERT INTO `Homeworks_student`(student_id,fname, lname, birthday, email, phone, room) VALUES(1,'Bob', 'Migon', '2013-07-30', 'bob.migo@gmail.com', '0826547891', 1);
+INSERT INTO `Homeworks_student`(student_id,fname, lname, birthday, email, phone, room) VALUES(2,'Mae', 'Pooka', '2013-09-17', 'mae.pook@gmail.com', '0824561372', 1);
