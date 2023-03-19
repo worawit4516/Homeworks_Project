@@ -8,8 +8,8 @@ show tables;
 
 -- DELETE FROM Homeworks_homework WHERE homework_id = 3;
 
-INSERT INTO `Homeworks_teacher`(teacher_id, fname, lname, DOB, email, phone, password) VALUES(1,'Sarah', 'Moore', '1990-02-20', 'sarah.moor@gmail.com', '0912356478', '');
-INSERT INTO `Homeworks_teacher`(teacher_id, fname, lname, DOB, email, phone, password) VALUES(2,'Emily', 'Smith', '1995-02-22', 'emily.smit@gmail.com', '0904751326', '');
+INSERT INTO `Homeworks_teacher`(teacher_id, fname, lname, birthday, email, phone, password) VALUES(1,'Sarah', 'Moore', '1990-02-20', 'sarah.moor@gmail.com', '0912356478', '');
+INSERT INTO `Homeworks_teacher`(teacher_id, fname, lname, birthday, email, phone, password) VALUES(2,'Emily', 'Smith', '1995-02-22', 'emily.smit@gmail.com', '0904751326', '');
 
 INSERT INTO `Homeworks_subject`(subject_id,name, description, credit, teacher_id) VALUES(1,'คณิตศาสตร์ 1', '', 3, 1);
 INSERT INTO `Homeworks_subject`(subject_id,name, description, credit, teacher_id) VALUES(2,'วิทยาศาสตร์ 1', '', 3, 2);
