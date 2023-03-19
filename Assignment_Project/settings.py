@@ -28,8 +28,11 @@ SECRET_KEY = 'django-insecure-d$6nhet&=s2buv@^4*2un^8v2n730%k%vcd0nh6@d4^(g&kq#8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['20.44.208.97','20.44.208.116','20.44.208.222','20.44.209.42','20.44.209.166','20.44.209.247','20.212.64.6']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://namo-homework.azurewebsites.net'
+],
 
 # Application definition
 
